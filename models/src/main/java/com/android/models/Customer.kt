@@ -1,4 +1,4 @@
-package com.android.models.result
+package com.android.models
 
 data class Customer(
     val customerId: String,
