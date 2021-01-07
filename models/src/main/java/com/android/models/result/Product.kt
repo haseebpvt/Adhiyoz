@@ -39,7 +39,7 @@ data class Product(
 
     val availableColors: List<String>,
 
-    val size: Int,
+    val size: Double,
 
     val color: String,
 
