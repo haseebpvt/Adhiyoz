@@ -1,2 +1,4 @@
+include ':models'
+include ':shared'
 include ':app'
 rootProject.name = "Adhiyoz"
