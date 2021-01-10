@@ -9,7 +9,7 @@ interface CategoryRepository {
 
 internal class FirestoreCategoryRepository @Inject constructor(
     private val firestoreCategoryDataSource: CategoryDataSource
-) : CategoryDataSource {
+) : CategoryRepository {
 
     override fun getCategories(): List<Category> {
         return firestoreCategoryDataSource.getCategories()

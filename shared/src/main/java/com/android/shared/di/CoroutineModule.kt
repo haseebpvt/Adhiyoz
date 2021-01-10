@@ -14,7 +14,7 @@ annotation class IoDispatcher
 
 @InstallIn(ApplicationComponent::class)
 @Module
-class CoroutineModule {
+object CoroutineModule {
 
     @IoDispatcher
     @Singleton
