@@ -26,7 +26,7 @@ internal class FirestoreCategoryDataSource @Inject constructor(
 
     private fun parseCategoryItem(snapshot: DocumentSnapshot): Category {
         return Category(
-            productId = snapshot[PRODUCT_ID] as? String ?: "",
+            categoryId = snapshot[CATEGORY_ID] as? String ?: "",
             categoryName = snapshot[CATEGORY_NAME] as? String ?: "",
             description = snapshot[DESCRIPTION] as? String ?: "",
             image = snapshot[IMAGE_URL] as? String ?: "",
@@ -39,7 +39,7 @@ internal class FirestoreCategoryDataSource @Inject constructor(
          * Firestore constants.
          */
         private const val CATEGORY = "category"
-        private const val PRODUCT_ID = "productId"
+        private const val CATEGORY_ID = "categoryId"
         private const val CATEGORY_NAME = "categoryName"
         private const val DESCRIPTION = "description"
         private const val ACTIVE = "active"

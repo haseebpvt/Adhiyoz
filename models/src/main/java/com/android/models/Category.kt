@@ -1,7 +1,7 @@
 package com.android.models
 
 data class Category(
-    val productId: String,
+    val categoryId: String,
     val categoryName: String,
     val description: String,
     val image: String,
