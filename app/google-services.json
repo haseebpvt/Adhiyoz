@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "863739448151",
+    "project_id": "adhiyoz",
+    "storage_bucket": "adhiyoz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863739448151:android:c6f6df5f3068b213a44c12",
+        "android_client_info": {
+          "package_name": "com.android.adhiyoz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863739448151-bdeauqgknf25ujib3q0bl3qmiu343ovk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpvPDMMB8J03CIfOG-x4_1dos7uUugX3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863739448151-bdeauqgknf25ujib3q0bl3qmiu343ovk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

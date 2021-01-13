@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.adhiyoz.domain.category.GetCategoryListUseCase
+import com.android.adhiyoz.result.Result
 import com.android.models.Category
-import com.android.shared.domain.category.GetCategoryListUseCase
-import com.android.shared.result.Result
 import kotlinx.coroutines.launch
 
 class HomeViewModel @ViewModelInject constructor(

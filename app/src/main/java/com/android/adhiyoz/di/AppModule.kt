@@ -1,9 +1,9 @@
-package com.android.shared.di
+package com.android.adhiyoz.di
 
-import com.android.shared.data.category.CategoryDataSource
-import com.android.shared.data.category.CategoryRepository
-import com.android.shared.data.category.FirestoreCategoryDataSource
-import com.android.shared.data.category.FirestoreCategoryRepository
+import com.android.adhiyoz.data.category.CategoryDataSource
+import com.android.adhiyoz.data.category.CategoryRepository
+import com.android.adhiyoz.data.category.FirestoreCategoryDataSource
+import com.android.adhiyoz.data.category.FirestoreCategoryRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.android.shared.di
+package com.android.adhiyoz.di
 
 import dagger.Module
 import dagger.Provides

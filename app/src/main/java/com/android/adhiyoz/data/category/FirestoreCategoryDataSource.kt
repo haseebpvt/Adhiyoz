@@ -1,4 +1,4 @@
-package com.android.shared.data.category
+package com.android.adhiyoz.data.category
 
 import com.android.models.Category
 import com.google.android.gms.tasks.Tasks

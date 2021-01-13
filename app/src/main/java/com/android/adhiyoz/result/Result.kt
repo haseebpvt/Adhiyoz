@@ -1,4 +1,4 @@
-package com.android.shared.result
+package com.android.adhiyoz.result
 
 sealed class Result<out R> {
 

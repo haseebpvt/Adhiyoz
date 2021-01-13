@@ -1,9 +1,9 @@
-package com.android.shared.domain.category
+package com.android.adhiyoz.domain.category
 
+import com.android.adhiyoz.data.category.CategoryRepository
+import com.android.adhiyoz.di.IoDispatcher
+import com.android.adhiyoz.result.Result
 import com.android.models.Category
-import com.android.shared.data.category.CategoryRepository
-import com.android.shared.di.IoDispatcher
-import com.android.shared.result.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
