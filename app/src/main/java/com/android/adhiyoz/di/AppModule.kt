@@ -4,6 +4,10 @@ import com.android.adhiyoz.data.category.CategoryDataSource
 import com.android.adhiyoz.data.category.CategoryRepository
 import com.android.adhiyoz.data.category.FirestoreCategoryDataSource
 import com.android.adhiyoz.data.category.FirestoreCategoryRepository
+import com.android.adhiyoz.data.product.FirestoreProductDataSource
+import com.android.adhiyoz.data.product.FirestoreProductRepository
+import com.android.adhiyoz.data.product.ProductDataSource
+import com.android.adhiyoz.data.product.ProductRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -25,5 +29,17 @@ object AppModule {
     @Provides
     fun provideCategoryRepository(categoryDataSource: CategoryDataSource): CategoryRepository {
         return FirestoreCategoryRepository(categoryDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductDataSource(firestore: FirebaseFirestore): ProductDataSource {
+        return FirestoreProductDataSource(firestore)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProductRepository(productDataSource: ProductDataSource): ProductRepository {
+        return FirestoreProductRepository(productDataSource)
     }
 }
