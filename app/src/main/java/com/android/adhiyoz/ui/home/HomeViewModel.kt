@@ -1,6 +1,5 @@
 package com.android.adhiyoz.ui.home
 
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,7 +23,8 @@ class HomeViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             when (val result = getCategoryListUseCase()) {
                 is Result.Success -> {
-                    Log.d("data_log", result.data.toString())
+//                    Log.d("data_log", result.data.toString())
+                    value = result.data
                 }
 
                 is Result.Error -> {
