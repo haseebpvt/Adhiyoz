@@ -6,18 +6,18 @@ data class Product(
     /**
      * Stock-keeping unit
      */
-    val sku: String = "",
+    val sku: String? = "",
 
     /**
      * Stock-keeping unit ID
      */
-    val idSku: String = "",
+    val idSku: String? = "",
 
-    val vendorProductId: String,
+    val vendorProductId: String?,
 
     val productName: String,
 
-    val productDescription: String,
+    val productDescription: String?,
 
     /**
      * Shop ID
@@ -26,34 +26,34 @@ data class Product(
 
     val categoryId: String,
 
-    val quantityPerUnit: String,
+    val quantityPerUnit: Int,
 
     val unitPrice: Double,
 
     /**
      * MSRP (Manufacturer's suggested retail price)
      */
-    val msrp: Double,
+    val msrp: Double?,
 
-    val availableSize: List<String>,
+    val availableSize: List<String>?,
 
-    val availableColors: List<String>,
+    val availableColors: List<String>?,
 
-    val size: Double,
+    val size: Double?,
 
-    val color: String,
+    val color: String?,
 
-    val discount: Double,
+    val discount: Double?,
 
-    val unitWeight: Double,
+    val unitWeight: Double?,
 
-    val unitInStock: Int,
+    val unitInStock: Int?,
 
-    val unitsOnOrder: Int,
+    val unitsOnOrder: Int?,
 
-    val reorderLevel: String,
+    val reorderLevel: String?,
 
-    val productAvailable: Boolean,
+    val productAvailable: Boolean = true,
 
     val discountAvailable: Boolean,
 
