@@ -38,48 +38,31 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3" />
 
-            <!--            <TextView-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:padding="8dp"-->
-            <!--                android:text="Top Hotel"-->
-            <!--                android:textAlignment="center"-->
-            <!--                android:textSize="30sp" />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Top Product"
+                android:textAlignment="center"
+                android:textSize="30sp" />
 
-            <!--            <View-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="1dp"-->
-            <!--                android:background="@color/light_grey" />-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_grey" />
 
-            <!--            <androidx.recyclerview.widget.RecyclerView-->
-            <!--                android:id="@+id/topHotelRecyclerView"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:clipToPadding="false"-->
-            <!--                android:overScrollMode="never"-->
-            <!--                android:paddingBottom="32dp"-->
-            <!--                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
-
-            <!--            <TextView-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:padding="8dp"-->
-            <!--                android:text="Top Product"-->
-            <!--                android:textAlignment="center"-->
-            <!--                android:textSize="30sp" />-->
-
-            <!--            <View-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="1dp"-->
-            <!--                android:background="@color/light_grey" />-->
-
-            <!--            <androidx.recyclerview.widget.RecyclerView-->
-            <!--                android:id="@+id/topProductRecyclerView"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:clipToPadding="false"-->
-            <!--                android:overScrollMode="never"-->
-            <!--                android:paddingBottom="32dp" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/top_products_recycler_view"
+                homeProductItems="@{viewmodel.productItems}"
+                viewModel="@{viewmodel}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="32dp"
+                app:customGridSpacing="@{10}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
 
         </LinearLayout>
 
