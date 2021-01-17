@@ -1,7 +1,7 @@
 package com.android.models
 
 data class Product(
-    val productId: String,
+    val productId: String?,
 
     /**
      * Stock-keeping unit
@@ -15,20 +15,20 @@ data class Product(
 
     val vendorProductId: String?,
 
-    val productName: String,
+    val productName: String?,
 
     val productDescription: String?,
 
     /**
      * Shop ID
      */
-    val supplierId: String,
+    val supplierId: String?,
 
-    val categoryId: String,
+    val categoryId: String?,
 
-    val quantityPerUnit: Int,
+    val quantityPerUnit: Int?,
 
-    val unitPrice: Double,
+    val unitPrice: Double?,
 
     /**
      * MSRP (Manufacturer's suggested retail price)
@@ -53,16 +53,18 @@ data class Product(
 
     val reorderLevel: String?,
 
-    val productAvailable: Boolean = true,
+    val productAvailable: Boolean? = true,
 
-    val discountAvailable: Boolean,
+    val discountAvailable: Boolean?,
 
     /**
      * Represent if this product has been ordered currently
      */
-    val currentOrder: Boolean,
+    val currentOrder: Boolean?,
 
-    val ranking: Double,
+    val ranking: Double?,
 
-    val note: String,
+    val picture: String?,
+
+    val note: String?,
 )

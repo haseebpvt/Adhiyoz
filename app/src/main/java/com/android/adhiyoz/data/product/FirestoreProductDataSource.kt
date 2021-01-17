@@ -25,31 +25,32 @@ class FirestoreProductDataSource @Inject constructor(
 
     private fun parseProductItem(snapshot: DocumentSnapshot): Product {
         return Product(
-            productId = snapshot[PRODUCT_ID] as String,
-            sku = snapshot[SKU] as String,
-            idSku = snapshot[ID_SKU] as String,
-            vendorProductId = snapshot[VENDOR_PRODUCT_ID] as String,
-            productName = snapshot[PRODUCT_NAME] as String,
-            productDescription = snapshot[PRODUCT_DESCRIPTION] as String,
-            supplierId = snapshot[SUPPLIER_ID] as String,
-            categoryId = snapshot[CATEGORY_ID] as String,
-            quantityPerUnit = snapshot[QUANTITY_PER_UNIT] as Int,
-            unitPrice = snapshot[UNIT_PRICE] as Double,
-            msrp = snapshot[MSRP] as Double,
-            availableSize = snapshot[AVAILABLE_SIZE] as List<String>,
-            availableColors = snapshot[AVAILABLE_COLOR] as List<String>,
-            size = snapshot[SIZE] as Double,
-            color = snapshot[COLOR] as String,
-            discount = snapshot[DISCOUNT] as Double? ?: 0.0,
-            unitWeight = snapshot[UNIT_WEIGHT] as Double,
-            unitInStock = snapshot[UNIT_IN_STOCK] as Int,
-            unitsOnOrder = snapshot[UNIT_IN_STOCK] as Int,
-            reorderLevel = snapshot[REORDER_LEVEL] as String,
-            productAvailable = snapshot[PRODUCT_AVAILABLE] as Boolean,
-            discountAvailable = snapshot[DISCOUNT_AVAILABLE] as Boolean,
-            currentOrder = snapshot[CURRENT_ORDER] as Boolean,
-            ranking = snapshot[RANKING] as Double,
-            note = snapshot[NOTE] as String
+            productId = snapshot[PRODUCT_ID] as? String,
+            sku = snapshot[SKU] as? String,
+            idSku = snapshot[ID_SKU] as? String,
+            vendorProductId = snapshot[VENDOR_PRODUCT_ID] as? String,
+            productName = snapshot[PRODUCT_NAME] as? String,
+            productDescription = snapshot[PRODUCT_DESCRIPTION] as? String,
+            supplierId = snapshot[SUPPLIER_ID] as? String,
+            categoryId = snapshot[CATEGORY_ID] as? String,
+            quantityPerUnit = snapshot[QUANTITY_PER_UNIT] as? Int,
+            unitPrice = snapshot[UNIT_PRICE] as? Double,
+            msrp = snapshot.getLong(MSRP)?.toDouble(),
+            availableSize = snapshot[AVAILABLE_SIZE] as? List<String>,
+            availableColors = snapshot[AVAILABLE_COLOR] as? List<String>,
+            size = snapshot[SIZE] as? Double,
+            color = snapshot[COLOR] as? String,
+            discount = snapshot[DISCOUNT] as? Double? ?: 0.0,
+            unitWeight = snapshot[UNIT_WEIGHT] as? Double,
+            unitInStock = snapshot[UNIT_IN_STOCK] as? Int,
+            unitsOnOrder = snapshot[UNIT_IN_STOCK] as? Int,
+            reorderLevel = snapshot[REORDER_LEVEL] as? String,
+            productAvailable = snapshot[PRODUCT_AVAILABLE] as? Boolean,
+            discountAvailable = snapshot[DISCOUNT_AVAILABLE] as? Boolean,
+            currentOrder = snapshot[CURRENT_ORDER] as? Boolean,
+            ranking = snapshot[RANKING] as? Double,
+            picture = snapshot[PICTURE] as? String,
+            note = snapshot[NOTE] as? String
         )
     }
 
@@ -82,6 +83,7 @@ class FirestoreProductDataSource @Inject constructor(
         const val DISCOUNT_AVAILABLE = "discountAvailable"
         const val CURRENT_ORDER = "currentOrder"
         const val RANKING = "ranking"
+        const val PICTURE = "picture"
         const val NOTE = "note"
     }
 }
