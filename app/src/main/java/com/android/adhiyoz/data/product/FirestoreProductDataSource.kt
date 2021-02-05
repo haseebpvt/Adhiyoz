@@ -36,7 +36,7 @@ class FirestoreProductDataSource @Inject constructor(
 
     private fun parseProductItem(snapshot: DocumentSnapshot): Product {
         return Product(
-            productId = snapshot[PRODUCT_ID] as? String,
+            productId = snapshot.id,
             sku = snapshot[SKU] as? String,
             idSku = snapshot[ID_SKU] as? String,
             vendorProductId = snapshot[VENDOR_PRODUCT_ID] as? String,

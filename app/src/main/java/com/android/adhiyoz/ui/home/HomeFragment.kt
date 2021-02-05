@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.android.adhiyoz.R
 import com.android.adhiyoz.databinding.HomeFragmentBinding
+import com.android.adhiyoz.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,5 +46,12 @@ class HomeFragment : Fragment() {
 
         binding.topProductsRecyclerView.addItemDecoration(verticalDivider)
         binding.topProductsRecyclerView.addItemDecoration(horizontalDivider)
+
+        // Action
+        viewModel.actionProductDetails.observe(viewLifecycleOwner, EventObserver { productId ->
+            val action = HomeFragmentDirections
+                .actionNavigationHomeToProductDetailsFragment(productId)
+            findNavController().navigate(action)
+        })
     }
 }

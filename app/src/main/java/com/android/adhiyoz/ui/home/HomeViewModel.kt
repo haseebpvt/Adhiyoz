@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.adhiyoz.domain.category.GetCategoryListUseCase
 import com.android.adhiyoz.domain.product.GetAllProductsUseCase
+import com.android.adhiyoz.result.Event
 import com.android.adhiyoz.result.Result
 import com.android.models.Category
 import com.android.models.Product
@@ -17,6 +18,9 @@ class HomeViewModel @ViewModelInject constructor(
     private val getCategoryListUseCase: GetCategoryListUseCase,
     private val getAllProductsUseCase: GetAllProductsUseCase
 ) : ViewModel() {
+
+    private val _actionProductDetails = MutableLiveData<Event<String>>()
+    val actionProductDetails: LiveData<Event<String>> = _actionProductDetails
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -52,4 +56,8 @@ class HomeViewModel @ViewModelInject constructor(
         }
     }
     val productItems: LiveData<List<Product>> = _productItems
+
+    fun productDetails(productId: String) {
+        _actionProductDetails.value = Event(productId)
+    }
 }
