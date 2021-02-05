@@ -9,6 +9,8 @@ import javax.inject.Inject
 
 interface ProductDataSource {
     fun getAllProducts(): List<Product>
+
+    fun getProductDetails(productId: String): Product
 }
 
 class FirestoreProductDataSource @Inject constructor(
@@ -21,6 +23,15 @@ class FirestoreProductDataSource @Inject constructor(
             .get()
         val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
         return snapshot.documents.map { parseProductItem(it) }
+    }
+
+    override fun getProductDetails(productId: String): Product {
+        val task = firestore
+            .collection(PRODUCT)
+            .document(productId)
+            .get()
+        val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
+        return parseProductItem(snapshot)
     }
 
     private fun parseProductItem(snapshot: DocumentSnapshot): Product {
