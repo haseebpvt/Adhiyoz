@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
@@ -29,7 +33,7 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.android.adhiyoz.ui.productdetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment">
+        android:label="Details">
         <argument
             android:name="productId"
             app:argType="string" />
