@@ -4,6 +4,10 @@ import com.android.adhiyoz.data.category.CategoryDataSource
 import com.android.adhiyoz.data.category.CategoryRepository
 import com.android.adhiyoz.data.category.FirestoreCategoryDataSource
 import com.android.adhiyoz.data.category.FirestoreCategoryRepository
+import com.android.adhiyoz.data.customer.CustomerDataSource
+import com.android.adhiyoz.data.customer.CustomerRepository
+import com.android.adhiyoz.data.customer.FirestoreCustomerDataSource
+import com.android.adhiyoz.data.customer.FirestoreCustomerRepository
 import com.android.adhiyoz.data.product.FirestoreProductDataSource
 import com.android.adhiyoz.data.product.FirestoreProductRepository
 import com.android.adhiyoz.data.product.ProductDataSource
@@ -41,5 +45,17 @@ object AppModule {
     @Provides
     fun provideProductRepository(productDataSource: ProductDataSource): ProductRepository {
         return FirestoreProductRepository(productDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCustomerDataSource(firestore: FirebaseFirestore): CustomerDataSource {
+        return FirestoreCustomerDataSource(firestore)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCustomerRepository(customerDataSource: CustomerDataSource): CustomerRepository {
+        return FirestoreCustomerRepository(customerDataSource)
     }
 }

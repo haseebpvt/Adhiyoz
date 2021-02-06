@@ -1,55 +1,57 @@
 package com.android.models
 
 data class Customer(
-    val customerId: String,
+    val customerId: String? = "",
 
-    val firstName: String,
+    val firstName: String? = "",
 
-    val lastName: String,
+    val lastName: String? = "",
 
-    val customerClass: String,
+    val customerClass: String? = "",
 
-    val room: String,
+    val room: String? = "",
 
-    val building: String,
+    val building: String? = "",
 
-    val address1: String,
+    val address1: String? = "",
 
-    val address2: String,
+    val address2: String? = "",
 
-    val city: String,
+    val city: String? = "",
 
-    val state: String,
+    val state: String? = "",
 
-    val postalCode: String,
+    val postalCode: String? = "",
 
-    val country: String,
+    val country: String? = "",
 
-    val phone: String,
+    val phone: String? = "",
 
-    val email: String,
+    val email: String? = "",
 
-    val password: String,
+    val photo: String? = "",
 
-    val billingAddress: String,
+    val password: String? = "",
 
-    val billingCity: String,
+    val billingAddress: String? = "",
 
-    val billingRegion: String,
+    val billingCity: String? = "",
 
-    val billingPostalCode: String,
+    val billingRegion: String? = "",
 
-    val billingCountry: String,
+    val billingPostalCode: String? = "",
 
-    val shippingAddress: String,
+    val billingCountry: String? = "",
 
-    val shipCity: String,
+    val shippingAddress: String? = "",
 
-    val shipRegion: String,
+    val shipCity: String? = "",
 
-    val shipPostalCode: String,
+    val shipRegion: String? = "",
 
-    val shipCountry: String,
+    val shipPostalCode: String? = "",
 
-    val dateEntered: Long,
+    val shipCountry: String? = "",
+
+    val dateEntered: Long? = 0,
 )

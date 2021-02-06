@@ -4,12 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.android.adhiyoz.ui.MainActivity
+import com.android.models.Customer
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+    private val viewModel: SplashViewModel by viewModels()
 
     private val RC_SIGN_IN = 5
 
@@ -52,6 +58,19 @@ class SplashActivity : AppCompatActivity() {
 
         if (requestCode == RC_SIGN_IN && resultCode == Activity.RESULT_OK) {
             // Singin success
+            val user = FirebaseAuth.getInstance().currentUser
+
+            // Save user details to firestore
+            viewModel.saveUserDetails(
+                userId = user?.uid ?: return,
+                customer = Customer(
+                    firstName = user.displayName,
+                    email = user.email,
+                    phone = user.phoneNumber,
+                    photo = user.photoUrl.toString()
+                )
+            )
+
             navigateToMainActivity()
         } else {
             // Signin failed
