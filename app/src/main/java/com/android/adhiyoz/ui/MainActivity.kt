@@ -25,7 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val ONLY_BOTTOM_NAV_DESTINATIONS = setOf(
-            R.id.navigation_home
+            R.id.navigation_home,
+            R.id.navigation_dashboard,
+            R.id.navigation_notifications
         )
     }
 
