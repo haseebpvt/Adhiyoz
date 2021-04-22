@@ -4,9 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <RadioButton
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="COD" />
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="COD" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Google Pay" />
+    </RadioGroup>
 </LinearLayout>
