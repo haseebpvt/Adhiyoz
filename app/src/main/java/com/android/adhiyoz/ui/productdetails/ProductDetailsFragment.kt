@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.android.adhiyoz.databinding.FragmentProductDetailsBinding
+import com.android.adhiyoz.result.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,5 +36,9 @@ class ProductDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.loadProductDetails(args.productId)
+
+        viewModel.actionNavigateToCheckout.observe(viewLifecycleOwner, EventObserver {
+            findNavController().navigate(it)
+        })
     }
 }

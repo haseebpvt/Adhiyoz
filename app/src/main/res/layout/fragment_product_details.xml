@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/green"
+                android:onClick="@{() -> viewmodel.actionGotoCheckout()}"
                 android:padding="@dimen/product_details_button_padding"
                 android:text="CHECKOUT"
                 android:textAlignment="center" />
