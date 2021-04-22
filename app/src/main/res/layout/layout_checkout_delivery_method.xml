@@ -5,16 +5,19 @@
     android:orientation="vertical">
 
     <RadioGroup
+        android:id="@+id/payment_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RadioButton
+            android:id="@+id/cod_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="COD" />
 
         <RadioButton
+            android:id="@+id/google_pay_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Google Pay" />

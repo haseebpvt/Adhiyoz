@@ -6,8 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.adhiyoz.constant.PaymentMethods
 import com.android.adhiyoz.domain.customer.GetCustomerDetailsFromFirestoreUseCase
 import com.android.adhiyoz.domain.product.GetProductDetailsWithProductIdUseCase
+import com.android.adhiyoz.result.Event
 import com.android.adhiyoz.result.Result
 import com.android.models.Customer
 import com.android.models.Product
@@ -17,6 +19,9 @@ class CheckoutViewModel @ViewModelInject constructor(
     private val getProductDetailsWithProductIdUseCase: GetProductDetailsWithProductIdUseCase,
     private val getCustomerDetailsFromFirestoreUseCase: GetCustomerDetailsFromFirestoreUseCase
 ) : ViewModel() {
+
+    private val _paymentMethod = MutableLiveData(PaymentMethods.COD)
+    val paymentMethods: LiveData<PaymentMethods> = _paymentMethod
 
     private val _product = MutableLiveData<Product>()
     val product: LiveData<Product> = _product
@@ -53,5 +58,17 @@ class CheckoutViewModel @ViewModelInject constructor(
                 }
             }
         }
+    }
+
+    fun setPaymentMethod(paymentMethods: PaymentMethods) {
+        _paymentMethod.value = paymentMethods
+    }
+
+    private val _actionPlaceOrder = MutableLiveData<Event<PaymentMethods>>()
+    val actionPlaceOrder: LiveData<Event<PaymentMethods>> = _actionPlaceOrder
+
+    fun placeOrder() {
+        val paymentMethod = paymentMethods.value ?: PaymentMethods.COD
+        _actionPlaceOrder.value = Event(paymentMethod)
     }
 }
