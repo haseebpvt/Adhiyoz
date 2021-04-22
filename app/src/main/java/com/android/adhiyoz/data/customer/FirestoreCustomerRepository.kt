@@ -5,6 +5,8 @@ import javax.inject.Inject
 
 interface CustomerRepository {
     fun saveCustomerDetails(userId: String, customer: Customer)
+
+    fun getCustomerDetails(userId: String): Customer
 }
 
 class FirestoreCustomerRepository @Inject constructor(
@@ -12,5 +14,9 @@ class FirestoreCustomerRepository @Inject constructor(
 ) : CustomerRepository {
     override fun saveCustomerDetails(userId: String, customer: Customer) {
         customerDataSource.saveCustomerDetails(userId, customer)
+    }
+
+    override fun getCustomerDetails(userId: String): Customer {
+        return customerDataSource.getCustomerDetails(userId)
     }
 }

@@ -43,7 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/checkout_item_top_bottom_margin"
-            android:layout_marginBottom="@dimen/checkout_item_top_bottom_margin" />
+            android:layout_marginBottom="@dimen/checkout_item_top_bottom_margin"
+            app:customer="@{viewmodel.customer}" />
 
         <View
             android:layout_width="match_parent"

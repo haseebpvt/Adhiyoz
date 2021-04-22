@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.android.adhiyoz.databinding.FragmentCheckoutBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,5 +35,9 @@ class CheckoutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.loadProductDetails(productId = args.productId)
+
+        FirebaseAuth.getInstance().currentUser?.uid?.let {
+            viewModel.loadCustomerDetails(userId = it)
+        }
     }
 }

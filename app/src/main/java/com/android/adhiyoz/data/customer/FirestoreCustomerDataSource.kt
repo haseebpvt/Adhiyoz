@@ -2,12 +2,15 @@ package com.android.adhiyoz.data.customer
 
 import com.android.models.Customer
 import com.google.android.gms.tasks.Tasks
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface CustomerDataSource {
     fun saveCustomerDetails(userId: String, customer: Customer)
+
+    fun getCustomerDetails(userId: String): Customer
 }
 
 class FirestoreCustomerDataSource @Inject constructor(
@@ -29,6 +32,26 @@ class FirestoreCustomerDataSource @Inject constructor(
             )
 
         Tasks.await(task, 20, TimeUnit.SECONDS)
+    }
+
+    override fun getCustomerDetails(userId: String): Customer {
+        val task = firestore
+            .collection(CUSTOMER)
+            .document(userId)
+            .get()
+
+        val snapshot = Tasks.await(task, 20, TimeUnit.SECONDS)
+        return parseCustomerItem(snapshot)
+    }
+
+    private fun parseCustomerItem(snapshot: DocumentSnapshot): Customer {
+        return Customer(
+            customerId = snapshot[CUSTOMER_ID] as String? ?: "",
+            firstName = snapshot[FIRST_NAME] as String? ?: "N/A",
+            phone = snapshot[PHONE_NUMBER] as String? ?: "N/A",
+            email = snapshot[EMAIL] as String? ?: "N/A",
+            photo = snapshot[PHOTO_URL] as String? ?: "N/A",
+        )
     }
 
     companion object {

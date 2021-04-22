@@ -6,13 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.adhiyoz.domain.customer.GetCustomerDetailsFromFirestoreUseCase
 import com.android.adhiyoz.domain.product.GetProductDetailsWithProductIdUseCase
 import com.android.adhiyoz.result.Result
+import com.android.models.Customer
 import com.android.models.Product
 import kotlinx.coroutines.launch
 
 class CheckoutViewModel @ViewModelInject constructor(
-    private val getProductDetailsWithProductIdUseCase: GetProductDetailsWithProductIdUseCase
+    private val getProductDetailsWithProductIdUseCase: GetProductDetailsWithProductIdUseCase,
+    private val getCustomerDetailsFromFirestoreUseCase: GetCustomerDetailsFromFirestoreUseCase
 ) : ViewModel() {
 
     private val _product = MutableLiveData<Product>()
@@ -28,6 +31,25 @@ class CheckoutViewModel @ViewModelInject constructor(
 
                 is Result.Error -> {
                     Log.d("custom_log", "Failed: ${result.exception}")
+                }
+            }
+        }
+    }
+
+
+    private val _customer = MutableLiveData<Customer>()
+    val customer: LiveData<Customer> = _customer
+
+    fun loadCustomerDetails(userId: String) {
+        viewModelScope.launch {
+            when (val result = getCustomerDetailsFromFirestoreUseCase(userId)) {
+                is Result.Success -> {
+                    Log.e("custom_log", result.data.toString())
+                    _customer.value = result.data
+                }
+
+                is Result.Error -> {
+                    Log.e("custom_log", result.exception.toString())
                 }
             }
         }
