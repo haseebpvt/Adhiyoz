@@ -5,12 +5,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.android.adhiyoz.R
 import com.android.adhiyoz.util.isAppInstalled
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class GooglePayActivity : AppCompatActivity() {
+
+    private val viewModel: GooglePayViewModel by viewModels()
 
     companion object {
         const val GOOGLE_PAY_PACKAGE = "com.google.android.apps.nbu.paisa.user"
@@ -65,6 +70,7 @@ class GooglePayActivity : AppCompatActivity() {
         val status = data?.getStringExtra("Status")?.toLowerCase(Locale.ROOT) ?: return
 
         if (resultCode == Activity.RESULT_OK && status == "success") {
+            viewModel.placeOrder()
             Toast.makeText(this, "Order Placed", Toast.LENGTH_LONG).show()
         } else {
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show()

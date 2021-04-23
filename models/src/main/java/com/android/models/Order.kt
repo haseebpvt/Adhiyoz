@@ -5,33 +5,33 @@ data class Order(
 
     val customerId: String,
 
-    val orderNumber: String,
+    val orderNumber: String = "",
 
-    val paymentId: String,
+    val paymentId: String = "",
 
     val orderDate: Long,
 
-    val shipDate: Long,
+    val shipDate: Long?,
 
-    val requiredDate: Long,
+    val requiredDate: Long?,
 
-    val shipperId: String,
+    val shipperId: String?,
 
-    val freight: String,
+    val freight: String?,
 
-    val salesTax: Double,
+    val salesTax: Double?,
 
     val timestamp: Long,
 
     val transactionStatus: String,
 
-    val errLoc: String,
+    val errLoc: String?,
 
-    val errMessage: String,
+    val errMessage: String?,
 
     val fulfilled: Boolean,
 
-    val deleted: Boolean,
+    val deleted: Boolean?,
 
     val paid: Boolean,
 
