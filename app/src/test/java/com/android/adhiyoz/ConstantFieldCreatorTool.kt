@@ -51,6 +51,7 @@ class ConstantFieldCreatorTool {
             .replace("String", "")
             .replace("Long", "")
             .replace("Double", "")
+            .replace("Boolean", "")
             .replace("val", "")
             .replace("var", "")
             .replace(" ", "")
