@@ -7,17 +7,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.adhiyoz.constant.PaymentMethods
+import com.android.adhiyoz.domain.checkout.CheckoutSingleProductUseCase
 import com.android.adhiyoz.domain.customer.GetCustomerDetailsFromFirestoreUseCase
 import com.android.adhiyoz.domain.product.GetProductDetailsWithProductIdUseCase
 import com.android.adhiyoz.result.Event
 import com.android.adhiyoz.result.Result
 import com.android.models.Customer
 import com.android.models.Product
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class CheckoutViewModel @ViewModelInject constructor(
     private val getProductDetailsWithProductIdUseCase: GetProductDetailsWithProductIdUseCase,
-    private val getCustomerDetailsFromFirestoreUseCase: GetCustomerDetailsFromFirestoreUseCase
+    private val getCustomerDetailsFromFirestoreUseCase: GetCustomerDetailsFromFirestoreUseCase,
+    private val checkoutSingleProductUseCase: CheckoutSingleProductUseCase
 ) : ViewModel() {
 
     private val _paymentMethod = MutableLiveData(PaymentMethods.COD)
@@ -70,5 +73,23 @@ class CheckoutViewModel @ViewModelInject constructor(
     fun placeOrder() {
         val paymentMethod = paymentMethods.value ?: PaymentMethods.COD
         _actionPlaceOrder.value = Event(paymentMethod)
+
+        if (paymentMethod == PaymentMethods.COD) {
+            FirebaseAuth.getInstance().currentUser?.let { codPlaceOrder(it.uid) }
+        }
+    }
+
+    private fun codPlaceOrder(customerId: String) {
+        viewModelScope.launch {
+            when (val result = checkoutSingleProductUseCase(customerId, PaymentMethods.COD)) {
+                is Result.Success -> {
+
+                }
+
+                is Result.Error -> {
+
+                }
+            }
+        }
     }
 }
