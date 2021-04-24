@@ -8,6 +8,9 @@ import com.android.adhiyoz.data.customer.CustomerDataSource
 import com.android.adhiyoz.data.customer.CustomerRepository
 import com.android.adhiyoz.data.customer.FirestoreCustomerDataSource
 import com.android.adhiyoz.data.customer.FirestoreCustomerRepository
+import com.android.adhiyoz.data.fcm.DefaultFcmRepository
+import com.android.adhiyoz.data.fcm.FcmRepository
+import com.android.adhiyoz.data.fcm.FcmService
 import com.android.adhiyoz.data.order.DefaultOrderDataSource
 import com.android.adhiyoz.data.order.DefaultOrderRepository
 import com.android.adhiyoz.data.order.OrderDataSource
@@ -73,5 +76,11 @@ object AppModule {
     @Provides
     fun provideOrderRepository(orderDataSource: OrderDataSource): OrderRepository {
         return DefaultOrderRepository(orderDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFcmRepository(fcmService: FcmService): FcmRepository {
+        return DefaultFcmRepository(fcmService)
     }
 }
