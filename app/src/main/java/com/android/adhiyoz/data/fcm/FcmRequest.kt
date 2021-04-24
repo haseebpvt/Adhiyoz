@@ -16,5 +16,9 @@ data class Data(
     @SerializedName("message")
     val message: String,
     @SerializedName("title")
-    val title: String
+    val title: String,
+    @SerializedName("priority")
+    val priority: String = "high",
+    @SerializedName("sound")
+    val sound: String = "notification"
 )
