@@ -7,8 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.adhiyoz.constant.PaymentMethods
+import com.android.adhiyoz.data.fcm.Data
+import com.android.adhiyoz.data.fcm.FcmRequest
 import com.android.adhiyoz.domain.checkout.CheckoutSingleProductUseCase
 import com.android.adhiyoz.domain.customer.GetCustomerDetailsFromFirestoreUseCase
+import com.android.adhiyoz.domain.fcm.SendPlaceOrderMessageToManagerAppUseCase
 import com.android.adhiyoz.domain.product.GetProductDetailsWithProductIdUseCase
 import com.android.adhiyoz.result.Event
 import com.android.adhiyoz.result.Result
@@ -20,7 +23,8 @@ import kotlinx.coroutines.launch
 class CheckoutViewModel @ViewModelInject constructor(
     private val getProductDetailsWithProductIdUseCase: GetProductDetailsWithProductIdUseCase,
     private val getCustomerDetailsFromFirestoreUseCase: GetCustomerDetailsFromFirestoreUseCase,
-    private val checkoutSingleProductUseCase: CheckoutSingleProductUseCase
+    private val checkoutSingleProductUseCase: CheckoutSingleProductUseCase,
+    private val sendPlaceOrderMessageToManagerAppUseCase: SendPlaceOrderMessageToManagerAppUseCase
 ) : ViewModel() {
 
     private val _paymentMethod = MutableLiveData(PaymentMethods.COD)
@@ -83,7 +87,16 @@ class CheckoutViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             when (val result = checkoutSingleProductUseCase(customerId, PaymentMethods.COD)) {
                 is Result.Success -> {
-
+                    sendPlaceOrderMessageToManagerAppUseCase(
+                        FcmRequest(
+                            to = "/topics/topic_name",
+                            data = Data(
+                                key1 = "",
+                                message = "Hello world",
+                                title = "Title form Adhiyoz"
+                            )
+                        )
+                    )
                 }
 
                 is Result.Error -> {

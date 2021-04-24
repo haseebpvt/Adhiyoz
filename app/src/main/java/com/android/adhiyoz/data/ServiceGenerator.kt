@@ -1,6 +1,5 @@
 package com.android.adhiyoz.data
 
-import android.content.SharedPreferences
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,7 +12,7 @@ class ServiceGenerator {
         private const val FIREBASE_CLOUD_MESSAGING_BASE_URL =
             "https://fcm.googleapis.com/fcm/"
 
-        fun getRetrofitInstance(sharedPreferences: SharedPreferences): Retrofit {
+        fun getRetrofitInstance(): Retrofit {
             val loggingInterceptor = HttpLoggingInterceptor { message ->
                 Log.d("http_log", message)
             }

@@ -1,6 +1,5 @@
 package com.android.adhiyoz.di
 
-import android.content.SharedPreferences
 import com.android.adhiyoz.data.ServiceGenerator
 import com.android.adhiyoz.data.fcm.FcmService
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,8 +22,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(preferences: SharedPreferences): Retrofit {
-        return ServiceGenerator.getRetrofitInstance(preferences)
+    fun provideRetrofit(): Retrofit {
+        return ServiceGenerator.getRetrofitInstance()
     }
 
     @Singleton
