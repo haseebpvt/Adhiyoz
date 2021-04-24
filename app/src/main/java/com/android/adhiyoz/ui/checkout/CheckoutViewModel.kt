@@ -87,22 +87,31 @@ class CheckoutViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             when (val result = checkoutSingleProductUseCase(customerId, PaymentMethods.COD)) {
                 is Result.Success -> {
-                    sendPlaceOrderMessageToManagerAppUseCase(
-                        FcmRequest(
-                            to = "/topics/topic_name",
-                            data = Data(
-                                key1 = "",
-                                message = "Hello world",
-                                title = "Title form Adhiyoz"
-                            )
-                        )
-                    )
+                    sendNotificationToManager()
                 }
 
                 is Result.Error -> {
 
                 }
             }
+        }
+    }
+
+    private fun sendNotificationToManager() {
+        val customerName = customer.value?.firstName ?: "User"
+        val productName = product.value?.productName ?: "Product"
+
+        viewModelScope.launch {
+            sendPlaceOrderMessageToManagerAppUseCase(
+                FcmRequest(
+                    to = "/topics/manager",
+                    data = Data(
+                        key1 = "",
+                        message = "Ordered by $customerName",
+                        title = "New $productName Order Received"
+                    )
+                )
+            )
         }
     }
 }
