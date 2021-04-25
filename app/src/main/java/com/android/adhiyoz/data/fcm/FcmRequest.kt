@@ -11,8 +11,8 @@ data class FcmRequest(
 )
 
 data class Data(
-    @SerializedName("key1")
-    val key1: String,
+    @SerializedName("order_id")
+    val orderId: String,
     @SerializedName("message")
     val message: String,
     @SerializedName("title")

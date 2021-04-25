@@ -106,7 +106,7 @@ class CheckoutViewModel @ViewModelInject constructor(
                 FcmRequest(
                     to = "/topics/manager",
                     data = Data(
-                        key1 = "",
+                        orderId = "test_key",
                         message = "Ordered by $customerName",
                         title = "New $productName Order Received"
                     )
