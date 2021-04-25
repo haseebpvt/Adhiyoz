@@ -3,19 +3,20 @@ package com.android.adhiyoz.data.order
 import com.android.adhiyoz.data.customer.FirestoreCustomerDataSource
 import com.android.models.Order
 import com.google.android.gms.tasks.Tasks
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface OrderDataSource {
-    fun placeOrder(order: Order)
+    fun placeOrder(order: Order): DocumentReference?
 }
 
 class DefaultOrderDataSource @Inject constructor(
     private val firestore: FirebaseFirestore
 ) : OrderDataSource {
 
-    override fun placeOrder(order: Order) {
+    override fun placeOrder(order: Order): DocumentReference? {
         val task = firestore
             .collection(ORDER)
             .add(
@@ -31,7 +32,7 @@ class DefaultOrderDataSource @Inject constructor(
                 )
             )
 
-        Tasks.await(task, 20, TimeUnit.SECONDS)
+        return Tasks.await(task, 20, TimeUnit.SECONDS)
     }
 
     companion object {

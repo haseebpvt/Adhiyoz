@@ -5,6 +5,7 @@ import com.android.adhiyoz.data.order.OrderRepository
 import com.android.adhiyoz.di.IoDispatcher
 import com.android.adhiyoz.result.Result
 import com.android.models.Order
+import com.google.firebase.firestore.DocumentReference
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -15,7 +16,10 @@ class CheckoutSingleProductUseCase @Inject constructor(
     @IoDispatcher private val dispatcher: CoroutineDispatcher
 ) {
 
-    suspend operator fun invoke(customerId: String, paymentMethods: PaymentMethods): Result<Unit> =
+    suspend operator fun invoke(
+        customerId: String,
+        paymentMethods: PaymentMethods
+    ): Result<DocumentReference?> =
         withContext(dispatcher) {
             val result = try {
                 val order = if (paymentMethods == PaymentMethods.GOOGLE_PAY) {

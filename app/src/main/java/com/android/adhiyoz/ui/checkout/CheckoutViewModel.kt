@@ -87,7 +87,9 @@ class CheckoutViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             when (val result = checkoutSingleProductUseCase(customerId, PaymentMethods.COD)) {
                 is Result.Success -> {
-                    sendNotificationToManager()
+                    result.data?.id?.let {
+                        sendNotificationToManager(it)
+                    }
                 }
 
                 is Result.Error -> {
@@ -97,7 +99,7 @@ class CheckoutViewModel @ViewModelInject constructor(
         }
     }
 
-    private fun sendNotificationToManager() {
+    private fun sendNotificationToManager(orderId: String) {
         val customerName = customer.value?.firstName ?: "User"
         val productName = product.value?.productName ?: "Product"
 
@@ -106,7 +108,7 @@ class CheckoutViewModel @ViewModelInject constructor(
                 FcmRequest(
                     to = "/topics/manager",
                     data = Data(
-                        orderId = "test_key",
+                        orderId = orderId,
                         message = "Ordered by $customerName",
                         title = "New $productName Order Received"
                     )
