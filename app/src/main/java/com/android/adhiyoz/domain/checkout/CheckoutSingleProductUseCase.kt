@@ -18,12 +18,14 @@ class CheckoutSingleProductUseCase @Inject constructor(
 
     suspend operator fun invoke(
         customerId: String,
+        productId: String,
         paymentMethods: PaymentMethods
     ): Result<DocumentReference?> =
         withContext(dispatcher) {
             val result = try {
                 val order = if (paymentMethods == PaymentMethods.GOOGLE_PAY) {
                     Order(
+                        productId = productId,
                         customerId = customerId,
                         orderDate = Date().time,
                         timestamp = Date().time,
@@ -34,6 +36,7 @@ class CheckoutSingleProductUseCase @Inject constructor(
                     )
                 } else {
                     Order(
+                        productId = productId,
                         customerId = customerId,
                         orderDate = Date().time,
                         timestamp = Date().time,

@@ -1,6 +1,7 @@
 package com.android.adhiyoz.data.order
 
 import com.android.adhiyoz.data.customer.FirestoreCustomerDataSource
+import com.android.adhiyoz.data.product.FirestoreProductDataSource
 import com.android.models.Order
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentReference
@@ -22,6 +23,7 @@ class DefaultOrderDataSource @Inject constructor(
             .add(
                 mapOf(
                     ORDER_ID to order.orderId,
+                    PRODUCT_ID to order.productId,
                     CUSTOMER_ID to order.customerId,
                     ORDER_DATE to order.orderDate,
                     TIMESTAMP to order.timestamp,
@@ -41,6 +43,7 @@ class DefaultOrderDataSource @Inject constructor(
          */
         const val ORDER = "order"
         const val ORDER_ID = "orderId"
+        const val PRODUCT_ID = FirestoreProductDataSource.PRODUCT_ID
         const val CUSTOMER_ID = FirestoreCustomerDataSource.CUSTOMER_ID
         const val ORDER_NUMBER = "orderNumber"
         const val PAYMENT_ID = "paymentId"

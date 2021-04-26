@@ -21,17 +21,21 @@ class GooglePayActivity : AppCompatActivity() {
     companion object {
         const val GOOGLE_PAY_PACKAGE = "com.google.android.apps.nbu.paisa.user"
         const val KEY_AMOUNT = "amount"
+        const val KEY_PRODUCT_ID = "product_id"
         private const val GOOGLE_PAY_RC = 100
         private const val NAME = "Haseeb Pavaratty"
         private const val UPI_ID = "haseebpvt@okicici"
         private const val TRANSACTION_NOTE = "Adhiyoz Payment"
     }
 
+    private var productId: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_pay)
 
         val amount = intent.extras?.getString(KEY_AMOUNT) ?: "0.00"
+        productId = intent.extras?.getString(KEY_PRODUCT_ID)
 
         val paymentUri = getPaymentUri(
             upiId = UPI_ID,
@@ -71,8 +75,17 @@ class GooglePayActivity : AppCompatActivity() {
         val status = data?.getStringExtra("Status")?.toLowerCase(Locale.ROOT) ?: return
 
         if (resultCode == Activity.RESULT_OK && status == "success") {
-            FirebaseAuth.getInstance().currentUser?.let { viewModel.placeOrder(it.uid) }
-            Toast.makeText(this, "Order placed", Toast.LENGTH_LONG).show()
+            val firebaseUserId = FirebaseAuth.getInstance().currentUser?.uid
+            val productId = productId
+
+            if (firebaseUserId != null && productId != null) {
+                viewModel.placeOrder(firebaseUserId, productId)
+                Toast.makeText(this, "Order placed", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Order Failed", Toast.LENGTH_LONG).show()
+            }
+
+
         } else {
             Toast.makeText(this, "Payment Failed", Toast.LENGTH_LONG).show()
         }

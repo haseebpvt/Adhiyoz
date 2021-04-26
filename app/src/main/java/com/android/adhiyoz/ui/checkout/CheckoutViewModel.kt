@@ -79,13 +79,19 @@ class CheckoutViewModel @ViewModelInject constructor(
         _actionPlaceOrder.value = Event(paymentMethod)
 
         if (paymentMethod == PaymentMethods.COD) {
-            FirebaseAuth.getInstance().currentUser?.let { codPlaceOrder(it.uid) }
+            FirebaseAuth.getInstance().currentUser?.let {
+                codPlaceOrder(
+                    it.uid,
+                    product.value?.productId ?: return
+                )
+            }
         }
     }
 
-    private fun codPlaceOrder(customerId: String) {
+    private fun codPlaceOrder(customerId: String, productId: String) {
         viewModelScope.launch {
-            when (val result = checkoutSingleProductUseCase(customerId, PaymentMethods.COD)) {
+            when (val result =
+                checkoutSingleProductUseCase(customerId, productId, PaymentMethods.COD)) {
                 is Result.Success -> {
                     result.data?.id?.let {
                         sendNotificationToManager(it)

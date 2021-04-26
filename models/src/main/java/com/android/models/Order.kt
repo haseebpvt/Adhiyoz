@@ -3,6 +3,8 @@ package com.android.models
 data class Order(
     val orderId: String? = "",
 
+    val productId: String?,
+
     val customerId: String,
 
     val orderNumber: String = "",

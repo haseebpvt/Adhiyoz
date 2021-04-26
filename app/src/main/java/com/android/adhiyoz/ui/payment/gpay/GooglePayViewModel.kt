@@ -12,10 +12,10 @@ class GooglePayViewModel @ViewModelInject constructor(
     private val checkoutSingleProductUseCase: CheckoutSingleProductUseCase
 ) : ViewModel() {
 
-    fun placeOrder(customerId: String) {
+    fun placeOrder(customerId: String, productId: String) {
         viewModelScope.launch {
             when (val result =
-                checkoutSingleProductUseCase(customerId, PaymentMethods.GOOGLE_PAY)) {
+                checkoutSingleProductUseCase(customerId, productId, PaymentMethods.GOOGLE_PAY)) {
                 is Result.Success -> {
 
                 }

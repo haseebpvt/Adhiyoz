@@ -63,6 +63,7 @@ class CheckoutFragment : Fragment() {
 
                         startActivity(Intent(this, GooglePayActivity::class.java).apply {
                             putExtra(GooglePayActivity.KEY_AMOUNT, amount.toString())
+                            putExtra(GooglePayActivity.KEY_PRODUCT_ID, args.productId)
                         })
                     }
                 }
